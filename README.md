@@ -15,7 +15,13 @@
 文档地址：[http://qifeng.321zou.com/](http://qifeng.321zou.com/)
 
 预览地址：[http://qifeng.321zou.com:82/](http://qifeng.321zou.com:82/)
+
+设计好的大屏设计预览效果
+
 ![输入图片说明](public/image2.png)
+
+
+
 ![输入图片说明](public/image3.png)
 ![输入图片说明](public/image5.png)
 ![输入图片说明](public/image.png)
