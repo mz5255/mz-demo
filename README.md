@@ -20,9 +20,18 @@
 
 ![输入图片说明](public/image2.png)
 
-
+可视化大屏设计器界面效果
 
 ![输入图片说明](public/image3.png)
+
+设计好的可视化大屏
+
 ![输入图片说明](public/image5.png)
+
+全国地图，34个省，344个市，3020个区县的，全国41636个乡镇地图的GeoJson
+
 ![输入图片说明](public/image.png)
+
+登录界面
+
 ![输入图片说明](image.png)
