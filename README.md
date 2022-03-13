@@ -22,7 +22,7 @@
 
 可视化大屏设计器界面效果
 
-![输入图片说明](public/image3.png)
+![输入图片说明](public/H6~U%60VI%5BQF@UL8%7DC5)QWOTU.png)
 
 设计好的可视化大屏
 
