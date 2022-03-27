@@ -35,3 +35,24 @@
 登录界面
 
 ![输入图片说明](image.png)
+
+
+ **大屏设计好的vue页面本地运行步骤**
+
+- 第一步：下载本项目。
+
+- 第二步 设计你想要的大屏效果，点击下图红色框位置进行下载
+
+![输入图片说明](public/buzhou2image.png)
+
+- 第三步 将vue页面拷贝到项目中，如下图位置：
+
+![输入图片说明](public/disanbuimage.png)
+
+- 第四步 配置路由，如下图：
+
+![输入图片说明](public/disibuimage.png)
+
+- 第五步：`npm install` 安装依赖  `npm run serve`运行项目 运行效果如下：
+
+![输入图片说明](public/yunxingxiaoguoimage.png)
