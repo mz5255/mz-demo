@@ -55,3 +55,4 @@
 
 - 第五步：`npm install` 安装依赖  `npm run serve`运行项目 运行效果如下：
 
+![输入图片说明](public/yunxingxiaoguoimage.png)
