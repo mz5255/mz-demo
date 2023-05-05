@@ -14,7 +14,7 @@
 
 文档地址：[http://qifeng.321zou.com/](http://qifeng.321zou.com/)
 
-预览地址：[http://qifeng.321zou.com:82/](http://qifeng.321zou.com:82/)
+预览地址：[http://bg.kyform.cn/](http://bg.kyform.cn/)
 
 设计好的大屏设计预览效果
 

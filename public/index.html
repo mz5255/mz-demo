@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>简搭云科技</title>
-    <script src="jquery.min.js"></script>
+    <script src="JSONPath.js"></script>
+    <script src="jquery-1.7.2.min.js"></script>
     <script src="beautifier.min.js"></script>
-    <script src="vs/loader.js"></script> 
-    <script src="vs/editor/editor.main.nls.js"></script> 
+            <script src="fabric.min.js"></script>
+            <style>
+                html{overflow: hidden;}
+            </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <script>
+        $.ajaxSettings.async = false
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>

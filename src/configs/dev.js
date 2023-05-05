@@ -1,5 +1,5 @@
-/* eslint-disable */
-const apiUrl = "http://bg.kyform.cn:8086"
+// import { getechartdetail } from "@/views/api/echart.js"
+const apiUrl = "http://bg.kyform.cn/prod-api"
 const echartUrl = "http://f.kyform.cn"
 export default {
     apiUrl: apiUrl,
