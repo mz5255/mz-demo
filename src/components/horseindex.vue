@@ -1,33 +1,39 @@
 <template>
-  <div :style="getcss">
-    <div class="horsepalne"> <span :style="cssstyle">{{val}}</span>
+    <div :style="getcss">
+        <div class="horsepalne"> <span :style="cssstyle">{{val}}</span>
+        </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
-  props: ['w', 'h', 'val', 'cssstyle'],
-  computed: {
-    getcss () {
-      return 'overflow:hidden;width:' + this.w + 'px;height:' + this.h + 'px;    font-size: 24px;'
-    }
-  }
+    props: ['w', 'h', 'val', 'cssstyle'],
+    computed: {
+        getcss() {
+            return (
+                'overflow:hidden;width:' +
+                this.w +
+                'px;height:' +
+                this.h +
+                'px;   white-space: nowrap;'
+            )
+        },
+    },
 }
 </script>
 <style scoped>
 .horsepalne {
-  -webkit-animation: marquee 5s linear infinite;
-  animation: marquee 5s linear infinite;
+    -webkit-animation: marquee 5s linear infinite;
+    animation: marquee 5s linear infinite;
 }
 @keyframes marquee {
-  0% {
-    transform: translateX(50%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+    0% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 .text {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 </style>

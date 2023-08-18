@@ -1,0 +1,43 @@
+.el-table th.is-leaf {
+  background: var(--tableheadcolor) !important;
+  border-bottom: 1px solid var(--tablebordercolor);
+  color: var(--tableheadfontcolor);
+}
+.el-table__body tr:hover > td {
+  background-color: var(--tablerowhovercolor) !important;
+  border-bottom: 1px solid var(--tablebordercolor);
+  color: var(--tablehoverfontcolor);
+}
+.el-table__body tr {
+  background: var(--tablerowcolor) !important;
+  border-bottom: 1px solid var(--tablebordercolor);
+  color: var(--tablerowfontcolor);
+}
+.el-table__body tr > td {
+  border-bottom: 0px;
+}
+.el-table__body tr:nth-child(2n) {
+  background: var(--tablerowdoublecolor) !important;
+  border-bottom: 1px solid var(--tablebordercolor);
+  color: var(--tablerowfontcolor);
+}
+.el-table__empty-text {
+  color: var(--tablerowfontcolor);
+}
+.el-table__empty-block {
+  background-color:var(--tablerowcolor) !important
+}
+
+.el-table--border::after,
+.el-table--group::after,
+.el-table::before {
+  background-color: transparent;
+}
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf {
+    border-bottom: 0px solid var(--tablebordercolor);
+}
+.el-table,
+.el-table__expanded-cell{
+    background: var(--tableheadcolor) !important;
+}
