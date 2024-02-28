@@ -17,6 +17,8 @@
 
 预览地址：[http://bg.kyform.cn/](http://bg.kyform.cn/)
 
+备用地址：[http://211.101.232.227:802/project](http://211.101.232.227:802)
+
 设计好的大屏设计预览效果
 
 ![输入图片说明](public/image2.png)
