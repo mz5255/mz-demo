@@ -13,7 +13,7 @@
 
 5.可视化大屏设计因为采用vue源码动态渲染，所以支持大屏设计本地下载，并提供了运行项目载体提供下载，将vue文件下载后可拷贝到运行项目中，就可以本地运行，就是离线运行了，与我的可视化大屏设计站点就没有任何关系了。
 
-文档地址：[http://qifeng.321zou.com/](http://qifeng.321zou.com/)
+文档地址：[http://doc.kyform.cn/](http://doc.kyform.cn/)
 
 预览地址：[http://bg.kyform.cn/](http://bg.kyform.cn/)
 
