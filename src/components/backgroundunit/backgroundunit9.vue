@@ -4,7 +4,7 @@
 <script>
 export default {
   props: ['w', 'h'],
-  data () {
+  data() {
     return {
       controlid: '',
       ctx: undefined,
@@ -14,14 +14,14 @@ export default {
     }
   },
   methods: {
-    init () {
+    init() {
       for (var x = -400; x < 400; x += 5) {
         for (var z = -250; z < 250; z += 5) {
           this.pixels.push({ x: x, y: 100, z: z });
         }
       }
     },
-    render (ts) {
+    render(ts) {
       var imageData = this.ctx.getImageData(0, 0, this.w, this.h),
         len = this.pixels.length,
         fov = 250,
@@ -46,7 +46,7 @@ export default {
       }
       this.ctx.putImageData(imageData, 0, 0);
     },
-    drawFrame (ts) {
+    drawFrame(ts) {
       this.timeIndex.push(requestAnimationFrame(this.drawFrame, this.canvas));
       this.ctx.fillStyle = '#17293a';
       this.ctx.fillRect(0, 0, this.w, this.h);
@@ -54,7 +54,7 @@ export default {
     }
 
   },
-  created () {
+  created() {
     this.controlid =
       'div' + Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
     this.$nextTick(() => {
@@ -64,7 +64,7 @@ export default {
       this.drawFrame()
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.timeIndex.forEach(ee => {
       window.cancelAnimationFrame(ee);
     })

@@ -1,73 +1,79 @@
 {
-  "name": "element-starter",
-  "description": "A Vue.js project",
-  "author": "yi.shyang@ele.me",
-  "private": true,
-  "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@jiaminghi/data-view": "^2.10.0",
-    "@types/echarts": "^4.4.3",
-    "axios": "^0.21.1",
-    "browserslist": "^4.16.8",
-    "caniuse-lite": "^1.0.30001251",
-    "core-js": "^3.6.4",
-    "echarts-gl": "^2.0.8",
-    "echarts-liquidfill": "^3.0.0",
-    "element-resize-detector": "^1.2.4",
-    "element-ui": "^2.15.12",
-    "file-saver": "^2.0.5",
-    "font-awesome": "^4.7.0",
-    "html2canvas": "^1.4.1",
-    "js-cookie": "^3.0.1",
-    "moment": "^2.29.1",
-    "screenfull": "^5.2.0",
-    "shelljs": "^0.8.4",
-    "svg-sprite-loader": "^6.0.11",
-    "v-charts": "^1.19.0",
-    "vue": "^2.6.11",
-    "vue-awesome": "^4.0.2",
-    "vue-json-viewer": "^2.2.22",
-    "vue-router": "^3.1.5",
-    "vue-seamless-scroll": "^1.1.23",
-    "vuedraggable": "^2.24.3",
-    "vuex": "^3.1.2"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.2.0",
-    "@vue/cli-plugin-eslint": "^4.2.0",
-    "@vue/cli-service": "^4.2.0",
-    "babel-eslint": "^10.0.3",
-    "compression-webpack-plugin": "^1.1.12",
-    "echarts": "^5.2.2",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.1.2",
-    "sass": "^1.25.0",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "element-starter",
+    "description": "A Vue.js project",
+    "author": "yi.shyang@ele.me",
+    "private": true,
+    "scripts": {
+        "dev": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
+    "dependencies": {
+        "@babel/compat-data": "^7.23.2",
+        "@jiaminghi/data-view": "^2.10.0",
+        "@turf/turf": "^6.5.0",
+        "@types/echarts": "^4.4.3",
+        "ant-design-vue": "^1.7.8",
+        "axios": "^0.21.1",
+        "browserslist": "^4.16.8",
+        "caniuse-lite": "^1.0.30001251",
+        "core-js": "^3.6.4",
+        "echarts-gl": "^2.0.8",
+        "echarts-liquidfill": "^3.0.0",
+        "element-resize-detector": "^1.2.4",
+        "element-ui": "^2.15.12",
+        "file-saver": "^2.0.5",
+        "flv.js": "^1.6.2",
+        "font-awesome": "^4.7.0",
+        "html2canvas": "^1.4.1",
+        "js-base64": "^3.7.3",
+        "js-cookie": "^3.0.1",
+        "mapbox-gl": "^2.15.0",
+        "moment": "^2.29.1",
+        "screenfull": "^5.2.0",
+        "shelljs": "^0.8.4",
+        "svg-sprite-loader": "^6.0.11",
+        "v-charts": "^1.19.0",
+        "vue": "^2.6.11",
+        "vue-awesome": "^4.0.2",
+        "vue-json-viewer": "^2.2.22",
+        "vue-router": "^3.1.5",
+        "vue-seamless-scroll": "^1.1.23",
+        "vuedraggable": "^2.24.3",
+        "vuex": "^3.1.2"
     },
-    "rules": {
-      "no-console": "off",
-      "no-debugger": "off"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^4.2.0",
+        "@vue/cli-plugin-eslint": "^4.2.0",
+        "@vue/cli-service": "^4.2.0",
+        "babel-eslint": "^10.0.3",
+        "compression-webpack-plugin": "^1.1.12",
+        "echarts": "^5.2.2",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^6.1.2",
+        "sass": "^1.25.0",
+        "sass-loader": "^8.0.2",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {
+            "no-console": "off",
+            "no-debugger": "off"
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

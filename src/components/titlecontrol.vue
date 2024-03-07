@@ -1,6 +1,6 @@
 <template>
     <div :style="getcss">
-        <span class="text" :style="cssstyle">{{ val }}</span>
+        <div class="text" :style="cssstyle">{{ val }}</div>
     </div>
 </template>
 <script>
@@ -16,9 +16,6 @@ export default {
                 'px;    '
             )
         },
-    },
-    created() {
-        debugger
     },
 }
 </script>

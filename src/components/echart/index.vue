@@ -1,13 +1,9 @@
 <template>
-  <div
-    class="echart"
-    :id="controlid"
-    :style="{
-      float: 'left',
-      width: '100%',
-      height: '100%',
-    }"
-  ></div>
+  <div class="echart" :id="controlid" :style="{
+    float: 'left',
+    width: '100%',
+    height: '100%',
+  }"></div>
 </template>
 <script>
 import * as echarts from 'echarts'
@@ -69,7 +65,9 @@ export default {
     },
   },
   beforeDestroy() {
-    this.mychart.dispose()
+    if (this.mychart) {
+      this.mychart.dispose();
+    }
   },
 }
 </script>

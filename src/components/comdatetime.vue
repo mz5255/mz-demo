@@ -11,7 +11,8 @@ export default {
             default() {
                 return 'YYYY-MM-DD HH:mm:ss'
             },
-        },
+        }
+
     },
     data() {
         return { datetime: '', timer: null }

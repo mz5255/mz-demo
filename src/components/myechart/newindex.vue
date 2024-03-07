@@ -1,9 +1,9 @@
 <template>
     <div :style="{ width: '100%', height: '100%' }">
         <div v-if="isError !== true" class="echart" :id="controlid" :style="{
-      float: 'left',
-      width: '100%',
-      height: '100%',
+        float: 'left',
+        width: '100%',
+        height: '100%',
     }"></div>
         <div v-else class="logmsg">{{ logmsg }}</div>
     </div>
@@ -13,11 +13,11 @@ import * as echarts from 'echarts'
 import tdTheme from './theme.json' // 引入默认主题
 import 'echarts-gl'
 import 'echarts-liquidfill/src/liquidFill.js' //在这里引入
-import { commGetApi, commPostApi } from '@/api/index.js'
+import { commGetApi, commPostApi } from "@/views/api/index.js";
 import elementResizeDetectorMaker from 'element-resize-detector'
 import configs from '../../configs'
 export default {
-    props: ['options'],
+    props: ['options', 'mapcity', 'mapcode'],
     data() {
         return {
             mychart: undefined,
@@ -55,6 +55,14 @@ export default {
             //   this.resize()
             // })
             this.$emit('initChartAfter')
+            this.mychart.on("Click", param => {
+                this.$emit("click", param);
+            });
+            this.mychart.getZr().on("click", params => {
+                if (!params.target) {
+                    this.$emit("zrclick", params);
+                }
+            });
         },
         resize() {
             this.mychart.resize()
@@ -76,20 +84,57 @@ export default {
                 }
             })
         },
+        loadOption(options) {
+            if (options !== null) {
+                this.mychart.setOption(options)
+            } else {
+                this.mychart.setOption({})
+            }
+        },
+        loadMapCity() {
+            if (this.mapcity != null) {
+                let citys = this.mapcity.indexOf(",") >= 0 ? this.mapcity.split(",") : [this.mapcity]
+                this.registerMapJson(citys[citys.length - 1], this.mapcode)
+            }
+        },
+        registerMapJson(citycode, mapname) {
+            if (citycode === "world" || citycode === "china") {
+                configs.getmapjson("mapjson/" + citycode + ".json", (res) => {
+                    if (res.code == 0) {
+                        if (typeof res.data !== "string") {
+                            echarts.registerMap(mapname, res.data);
+                            this.loadOption(this.options);
+                        } else {
+                            echarts.registerMap(
+                                mapname,
+                                JSON.parse(res.data.replace(/[\r\n]/g, "").trim())
+                            );
+                            this.loadOption(this.options);
+                        }
+                    }
+                });
+            } else {
+                configs.getmapjson(
+                    "mapjson/geometryCouties/" + citycode + ".json",
+                    (res) => {
+                        if (res.code == 0) {
+                            if (typeof res.data !== "string") {
+                                echarts.registerMap(mapname, res.data);
+                                this.loadOption(this.options);
+                            } else {
+                                echarts.registerMap(
+                                    mapname,
+                                    JSON.parse(res.data.replace(/[\r\n]/g, "").trim())
+                                );
+                                this.loadOption(this.options);
+                            }
+                        }
+                    }
+                );
+            }
+        },
     },
     created() {
-        // echarts.getMap = function (name) {
-        //   let jsonmap = undefined
-        //   switch (name) {
-        //     case 'china':
-        //       jsonmap = JSON.parse(mapjson.china)
-        //       break;
-
-        //     default:
-        //       break;
-        //   }
-        //   return jsonmap
-        // }
         this.controlid =
             'div' +
             Date.parse(new Date()) +
@@ -103,6 +148,7 @@ export default {
         }
         this.ajaxget = commGetApi
         this.ajaxpost = commPostApi
+        this.loadMapCity()
     },
     mounted() {
         this.$nextTick(() => {
@@ -110,16 +156,29 @@ export default {
         })
     },
     watch: {
-        options(val) {
-            if (this.mychart !== undefined) {
-                if (this.options !== undefined) {
-                    this.mychart.setOption(val, true)
+        options: {
+            handler(val) {
+                if (this.mychart !== undefined) {
+                    if (this.options !== undefined) {
+                        this.mychart.setOption(val, true)
+                    }
                 }
-            }
+            },
+            deep: true
         },
+        mapcity: {
+            handler() {
+                if (this.mychart !== undefined) {
+                    this.loadMapCity()
+
+                }
+            }, deep: true
+        }
     },
     beforeDestroy() {
-        this.mychart.dispose()
+        if (this.mychart) {
+            this.mychart.dispose();
+        }
     },
 }
 </script>
