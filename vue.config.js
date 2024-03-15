@@ -8,6 +8,7 @@ shell.cp(`./src/configs/${prod}.js`, "./src/configs/index.js");
 
 // gzip压缩插件
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const port = process.env.port || process.env.npm_config_port || 80 // 端口
 
 // 代码打包之后取出console.log压缩代码
 const TerserPlugin = require("terser-webpack-plugin");
@@ -66,13 +67,13 @@ module.exports = {
     myConfig.devtool = "cheap-module-source-map";
     myConfig.devServer = {
       disableHostCheck: true, //  禁用webpack热重载检查 解决热更新失效问题
-      host: "localhost",
-      port: 8083,
+      host: "0.0.0.0",
+      port: port,
       https: false,
       proxy: {
         "/jd": {
           // 要请求的后台地址113.240.220.22\http://localhost:8181/net3vs
-          target: "http://211.101.232.227:802/bigapi/",
+          target: "http://localhost:8081",
           ws: true, // 启用websockets
           changeOrigin: true, // 是否跨域
           pathRewrite: {

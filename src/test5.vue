@@ -454,13 +454,16 @@ import bigimg from '@/components/bigImg.vue'
 export default {
     data() {
         return {
+          queryParms:{},
+          websocket: null,
+          userId: 10 , // 假设有一个 userId 数据
             w: 1920,
             css: '',
             h: 1080,
             bg: '/temp/bg20.jpg',
             bgColor: 'rgba(13, 42, 67)',
             fromData: {
-                sel169130284453634: 'XXX 学校期末考试大屏展示',
+                sel169130284453634: 'mz-大屏演示',
                 sel169130396314850: {
                     grid: {
                         left: '5%',
@@ -1215,7 +1218,12 @@ export default {
                         },
                     ],
                 },
-                sel1691303516700: '各科成绩',
+
+
+
+
+
+                sel1691303516700: '男生总数与女生总数',
                 sel169130349412366: {
                     grid: {
                         left: '2%',
@@ -1254,16 +1262,7 @@ export default {
                                 show: false,
                             },
                             data: [
-                                '安徽省',
-                                '河南省',
-                                '浙江省',
-                                '湖北省',
-                                '贵州省',
-                                '江西省',
-                                '江苏省',
-                                '四川省',
-                                '云南省',
-                                '湖南省',
+
                             ],
                         },
                         {
@@ -1279,16 +1278,7 @@ export default {
                                 },
                             },
                             data: [
-                                239,
-                                181,
-                                154,
-                                144,
-                                135,
-                                117,
-                                74,
-                                72,
-                                67,
-                                55,
+
                             ],
                         },
                     ],
@@ -1360,46 +1350,51 @@ export default {
                         },
                     ],
                 },
-                sel169130331623977: '期末考试成绩单',
+
+
+
+
+
+                sel169130331623977: '用户',
                 sel169130330513948: [
                     {
-                        prop: 'class_name',
-                        label: '班级',
+                        prop: 'userName',
+                        label: '名字',
                         width: 180,
                     },
                     {
-                        prop: 'student_name',
-                        label: '姓名',
+                        prop: 'email',
+                        label: '邮箱',
                         width: 180,
                     },
                     {
-                        prop: 'testtype',
-                        label: '课程',
+                        prop: 'phonenumber',
+                        label: '手机号',
                     },
                     {
-                        prop: 'score',
-                        label: '分数',
+                        prop: 'createTime',
+                        label: '创建时间',
                         width: 120,
                     },
                 ],
                 sel169130330513948_elcolumn: [
                     {
-                        prop: 'class_name',
-                        label: '班级',
+                        prop: 'userName',
+                        label: '名字',
                         width: 180,
                     },
                     {
-                        prop: 'student_name',
-                        label: '姓名',
+                        prop: 'email',
+                        label: '邮箱',
                         width: 180,
                     },
                     {
-                        prop: 'testtype',
-                        label: '课程',
+                        prop: 'phonenumber',
+                        label: '手机号',
                     },
                     {
-                        prop: 'score',
-                        label: '分数',
+                        prop: 'createTime',
+                        label: '创建时间',
                         width: 120,
                     },
                 ],
@@ -1794,7 +1789,52 @@ export default {
             },
         }
     },
+  mounted() {
+    // 在 mounted 钩子中连接 WebSocket
+    this.connectWebSocket();
+  },
+  beforeDestroy() {
+    // 在组件销毁之前关闭 WebSocket 连接
+    if (this.websocket) {
+      this.websocket.close();
+    }
+  },
     methods: {
+      connectWebSocket() {
+        // 创建 WebSocket 连接
+        this.websocket = new WebSocket("ws://localhost:8081/api/pushMessage/"+this.userId);
+
+        // 监听 WebSocket 连接打开事件
+        this.websocket.onopen = () => {
+          console.log('WebSocket 连接已打开');
+        };
+
+        // 监听 WebSocket 接收消息事件
+        this.websocket.onmessage = (event) => {
+          if(event.data!=="连接成功"){
+            let data = JSON.parse(event.data);
+            this.fromData.sel169130349412366.yAxis[0].data = data.x;
+            this.fromData.sel169130349412366.yAxis[1].data = data.y;
+            this.fromData.sel169130349412366.series[0].data = data.y;
+            this.fromData.sel169130349412366.series[1].data = data.y;
+            console.log('接收到消息：',data);
+          }
+        };
+
+        // 监听 WebSocket 关闭事件
+        this.websocket.onclose = () => {
+          console.log('WebSocket 连接已关闭');
+        };
+
+        // 监听 WebSocket 错误事件
+        this.websocket.onerror = (error) => {
+          console.error('WebSocket 出现错误:', error);
+        };
+      },
+
+
+
+
         created_sys() {
             ///系统方法 判断页面大小 使其自动适应
             let $this = this
@@ -1862,6 +1902,7 @@ export default {
             }).then((res) => {
                 if (res.code === 0) {
                     this.fromData['sel169130379243315_dataconfig'] = res
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_6059 = JSONPath.JSONPath({
                         path: '$.data[?(@.class_name)].class_name',
                         json: this.fromData['sel169130379243315_dataconfig'],
@@ -1871,6 +1912,7 @@ export default {
                             'sel169130379243315'
                         ].xAxis.data = var1692357181000_6059
                     }
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_31444 = JSONPath.JSONPath({
                         path: '$.data[?(@.sumscore)].sumscore',
                         json: this.fromData['sel169130379243315_dataconfig'],
@@ -1887,26 +1929,21 @@ export default {
                     this.$message.error(res.msg)
                 }
             })
-            this.$ajaxpost('/ui/common/testExecuteApi', {
-                sqlcontent:
-                    'select c.class_name,s.student_name,sc.testtype,sc.score FROM `test_class` as c inner join test_studnet as s on c.class_id=s.class_id\r\ninner join test_score as sc on sc.studnet_id=s.student_id order by s.student_name',
-                paramjsonsrt: {
-                    body: {},
-                    query: {},
-                },
-                apitype: 'LIST',
-            }).then((res) => {
-                if (res.code === 0) {
-                    this.fromData['sel169130330513948_dataconfig'] = res
-                    this.fromData.sel169130330513948 = this.fromData[
-                        'sel169130330513948_dataconfig'
-                    ].data
-                    this.fromData['sel169130330513948'] = JSON.parse(
-                        JSON.stringify(this.fromData['sel169130330513948'])
-                    )
-                } else {
-                    this.$message.error(res.msg)
-                }
+
+            this.$ajaxget('user/userList').then( res => {
+              console.log(res)
+              this.fromData.sel169130330513948 = res;
+                // if (res.code === 0) {
+                //     this.fromData['sel169130330513948_dataconfig'] = res
+                //     this.fromData.sel169130330513948 = this.fromData[
+                //         'sel169130330513948_dataconfig'
+                //     ].data
+                //     this.fromData['sel169130330513948'] = JSON.parse(
+                //         JSON.stringify(this.fromData['sel169130330513948'])
+                //     )
+                // } else {
+                //     this.$message.error(res.msg)
+                // }
             })
             this.$ajaxpost('/ui/common/testExecuteApi', {
                 sqlcontent:
@@ -1919,6 +1956,7 @@ export default {
             }).then((res) => {
                 if (res.code === 0) {
                     this.fromData['sel169130325625103_dataconfig'] = res
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_52064 = JSONPath.JSONPath({
                         path: '$.data[?(@.student_name)].student_name',
                         json: this.fromData['sel169130325625103_dataconfig'],
@@ -1928,6 +1966,7 @@ export default {
                             'sel169130325625103'
                         ].xAxis.data = var1692357181000_52064
                     }
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_82882 = JSONPath.JSONPath({
                         path: '$.data[?(@.sumscore)].sumscore',
                         json: this.fromData['sel169130325625103_dataconfig'],
@@ -1977,6 +2016,7 @@ export default {
             }).then((res) => {
                 if (res.code === 0) {
                     this.fromData['sel169130302757431_dataconfig'] = res
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_89441 = JSONPath.JSONPath({
                         path: '$.data[?(@.class_name)].class_name',
                         json: this.fromData['sel169130302757431_dataconfig'],
@@ -1986,6 +2026,7 @@ export default {
                             'sel169130302757431'
                         ].yAxis[0].data = var1692357181000_89441
                     }
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_39384 = JSONPath.JSONPath({
                         path: '$.data[?(@.sumscore)].sumscore',
                         json: this.fromData['sel169130302757431_dataconfig'],
@@ -1995,6 +2036,7 @@ export default {
                             'sel169130302757431'
                         ].series[0].data = var1692357181000_39384
                     }
+                  // eslint-disable-next-line no-undef
                     let var1692357181000_56999 = JSONPath.JSONPath({
                         path: '$.data[?(@.sumscore)].sumscore',
                         json: this.fromData['sel169130302757431_dataconfig'],

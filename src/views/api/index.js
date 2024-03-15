@@ -1,12 +1,8 @@
 import request from '../utils/service'
 import qs from 'qs'
-export function commGetApi (url, param) {
-    let ajaxurl = url
-    if (param.query !== undefined) {
-        ajaxurl = ajaxurl + "?" + qs.stringify(param.query)
-    }
+export function commGetApi (url) {
     return request({
-        url: ajaxurl,
+        url: url,
         method: 'get',
     })
 }

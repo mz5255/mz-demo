@@ -928,7 +928,11 @@
                 "controlTimer": {}
             }
         },
+
         methods: {
+
+
+
             created_sys() {
                 ///系统方法 判断页面大小 使其自动适应
                 let $this = this
