@@ -1,5 +1,5 @@
 /* eslint-disable */
-const apiUrl = "http://localhost:8081/";
+const apiUrl = "/jd";
 const echartUrl = "http://211.101.232.227:803/";
 export default {
   apiUrl: apiUrl,

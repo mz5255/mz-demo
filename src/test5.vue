@@ -1891,168 +1891,157 @@ export default {
             echartdata.series[2].data = dataobj['71班']
         },
         loadfunmounted_sys() {
-            this.$ajaxpost('/ui/common/testExecuteApi', {
-                sqlcontent:
-                    "select * from(\r\nselect c.class_name, sum(sc.score) sumscore FROM `test_class`\r\nas c inner join test_studnet as s on c.class_id = s.class_id inner join test_score as sc on sc.studnet_id = s.student_id where testtype = '数学'\r\nGROUP BY c.class_name) as datetable order by sumscore desc",
-                paramjsonsrt: {
-                    body: {},
-                    query: {},
-                },
-                apitype: 'LIST',
-            }).then((res) => {
-                if (res.code === 0) {
-                    this.fromData['sel169130379243315_dataconfig'] = res
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_6059 = JSONPath.JSONPath({
-                        path: '$.data[?(@.class_name)].class_name',
-                        json: this.fromData['sel169130379243315_dataconfig'],
-                    })
-                    if (var1692357181000_6059.length > 0) {
-                        this.fromData[
-                            'sel169130379243315'
-                        ].xAxis.data = var1692357181000_6059
-                    }
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_31444 = JSONPath.JSONPath({
-                        path: '$.data[?(@.sumscore)].sumscore',
-                        json: this.fromData['sel169130379243315_dataconfig'],
-                    })
-                    if (var1692357181000_31444.length > 0) {
-                        this.fromData[
-                            'sel169130379243315'
-                        ].series[0].data = var1692357181000_31444
-                    }
-                    this.fromData['sel169130379243315'] = JSON.parse(
-                        JSON.stringify(this.fromData['sel169130379243315'])
-                    )
-                } else {
-                    this.$message.error(res.msg)
-                }
-            })
+            // this.$ajaxpost('/ui/common/testExecuteApi', {
+            //     sqlcontent:
+            //         "select * from(\r\nselect c.class_name, sum(sc.score) sumscore FROM `test_class`\r\nas c inner join test_studnet as s on c.class_id = s.class_id inner join test_score as sc on sc.studnet_id = s.student_id where testtype = '数学'\r\nGROUP BY c.class_name) as datetable order by sumscore desc",
+            //     paramjsonsrt: {
+            //         body: {},
+            //         query: {},
+            //     },
+            //     apitype: 'LIST',
+            // }).then((res) => {
+            //     if (res.code === 0) {
+            //         this.fromData['sel169130379243315_dataconfig'] = res
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_6059 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.class_name)].class_name',
+            //             json: this.fromData['sel169130379243315_dataconfig'],
+            //         })
+            //         if (var1692357181000_6059.length > 0) {
+            //             this.fromData[
+            //                 'sel169130379243315'
+            //             ].xAxis.data = var1692357181000_6059
+            //         }
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_31444 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.sumscore)].sumscore',
+            //             json: this.fromData['sel169130379243315_dataconfig'],
+            //         })
+            //         if (var1692357181000_31444.length > 0) {
+            //             this.fromData[
+            //                 'sel169130379243315'
+            //             ].series[0].data = var1692357181000_31444
+            //         }
+            //         this.fromData['sel169130379243315'] = JSON.parse(
+            //             JSON.stringify(this.fromData['sel169130379243315'])
+            //         )
+            //     } else {
+            //         this.$message.error(res.msg)
+            //     }
+            // })
 
             this.$ajaxget('user/userList').then( res => {
               console.log(res)
               this.fromData.sel169130330513948 = res;
-                // if (res.code === 0) {
-                //     this.fromData['sel169130330513948_dataconfig'] = res
-                //     this.fromData.sel169130330513948 = this.fromData[
-                //         'sel169130330513948_dataconfig'
-                //     ].data
-                //     this.fromData['sel169130330513948'] = JSON.parse(
-                //         JSON.stringify(this.fromData['sel169130330513948'])
-                //     )
-                // } else {
-                //     this.$message.error(res.msg)
-                // }
             })
-            this.$ajaxpost('/ui/common/testExecuteApi', {
-                sqlcontent:
-                    '\r\nselect *from (\r\nselect s.student_name,sum(sc.score) sumscore FROM `test_class` as c inner join test_studnet  as s on c.class_id=s.class_id\r\ninner join test_score as sc on sc.studnet_id=s.student_id GROUP BY s.student_name) as datetable order by sumscore desc ',
-                paramjsonsrt: {
-                    body: {},
-                    query: {},
-                },
-                apitype: 'LIST',
-            }).then((res) => {
-                if (res.code === 0) {
-                    this.fromData['sel169130325625103_dataconfig'] = res
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_52064 = JSONPath.JSONPath({
-                        path: '$.data[?(@.student_name)].student_name',
-                        json: this.fromData['sel169130325625103_dataconfig'],
-                    })
-                    if (var1692357181000_52064.length > 0) {
-                        this.fromData[
-                            'sel169130325625103'
-                        ].xAxis.data = var1692357181000_52064
-                    }
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_82882 = JSONPath.JSONPath({
-                        path: '$.data[?(@.sumscore)].sumscore',
-                        json: this.fromData['sel169130325625103_dataconfig'],
-                    })
-                    if (var1692357181000_82882.length > 0) {
-                        this.fromData[
-                            'sel169130325625103'
-                        ].series[0].data = var1692357181000_82882
-                    }
-                    this.fromData['sel169130325625103'] = JSON.parse(
-                        JSON.stringify(this.fromData['sel169130325625103'])
-                    )
-                } else {
-                    this.$message.error(res.msg)
-                }
-            })
-            this.$ajaxpost('/ui/common/testExecuteApi', {
-                sqlcontent:
-                    'SELECT class_name, avg(sc.score) as sumscore, testtype FROM `test_class`\r\nas c inner join test_studnet as s on c.class_id = s.class_id\r\ninner join test_score as sc on sc.studnet_id = s.student_id GROUP BY class_name, testtype\r\nORDER BY testtype',
-                paramjsonsrt: {
-                    body: {},
-                    query: {},
-                },
-                apitype: 'LIST',
-            }).then((res) => {
-                if (res.code === 0) {
-                    this.fromData['sel169130312431258_dataconfig'] = res
-                    this.sel169130312431258_bind_sys(
-                        this.fromData['sel169130312431258'],
-                        this.fromData['sel169130312431258_dataconfig']
-                    )
-                    this.fromData['sel169130312431258'] = JSON.parse(
-                        JSON.stringify(this.fromData['sel169130312431258'])
-                    )
-                } else {
-                    this.$message.error(res.msg)
-                }
-            })
-            this.$ajaxpost('/ui/common/testExecuteApi', {
-                sqlcontent:
-                    'SELECT class_name ,sum(sc.score) as sumscore FROM `test_class` as c inner join test_studnet as s on c.class_id=s.class_id\r\ninner join test_score as sc on sc.studnet_id=s.student_id GROUP BY class_name',
-                paramjsonsrt: {
-                    body: {},
-                    query: {},
-                },
-                apitype: 'LIST',
-            }).then((res) => {
-                if (res.code === 0) {
-                    this.fromData['sel169130302757431_dataconfig'] = res
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_89441 = JSONPath.JSONPath({
-                        path: '$.data[?(@.class_name)].class_name',
-                        json: this.fromData['sel169130302757431_dataconfig'],
-                    })
-                    if (var1692357181000_89441.length > 0) {
-                        this.fromData[
-                            'sel169130302757431'
-                        ].yAxis[0].data = var1692357181000_89441
-                    }
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_39384 = JSONPath.JSONPath({
-                        path: '$.data[?(@.sumscore)].sumscore',
-                        json: this.fromData['sel169130302757431_dataconfig'],
-                    })
-                    if (var1692357181000_39384.length > 0) {
-                        this.fromData[
-                            'sel169130302757431'
-                        ].series[0].data = var1692357181000_39384
-                    }
-                  // eslint-disable-next-line no-undef
-                    let var1692357181000_56999 = JSONPath.JSONPath({
-                        path: '$.data[?(@.sumscore)].sumscore',
-                        json: this.fromData['sel169130302757431_dataconfig'],
-                    })
-                    if (var1692357181000_56999.length > 0) {
-                        this.fromData[
-                            'sel169130302757431'
-                        ].yAxis[1].data = var1692357181000_56999
-                    }
-                    this.fromData['sel169130302757431'] = JSON.parse(
-                        JSON.stringify(this.fromData['sel169130302757431'])
-                    )
-                } else {
-                    this.$message.error(res.msg)
-                }
-            })
+            // this.$ajaxpost('/ui/common/testExecuteApi', {
+            //     sqlcontent:
+            //         '\r\nselect *from (\r\nselect s.student_name,sum(sc.score) sumscore FROM `test_class` as c inner join test_studnet  as s on c.class_id=s.class_id\r\ninner join test_score as sc on sc.studnet_id=s.student_id GROUP BY s.student_name) as datetable order by sumscore desc ',
+            //     paramjsonsrt: {
+            //         body: {},
+            //         query: {},
+            //     },
+            //     apitype: 'LIST',
+            // }).then((res) => {
+            //     if (res.code === 0) {
+            //         this.fromData['sel169130325625103_dataconfig'] = res
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_52064 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.student_name)].student_name',
+            //             json: this.fromData['sel169130325625103_dataconfig'],
+            //         })
+            //         if (var1692357181000_52064.length > 0) {
+            //             this.fromData[
+            //                 'sel169130325625103'
+            //             ].xAxis.data = var1692357181000_52064
+            //         }
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_82882 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.sumscore)].sumscore',
+            //             json: this.fromData['sel169130325625103_dataconfig'],
+            //         })
+            //         if (var1692357181000_82882.length > 0) {
+            //             this.fromData[
+            //                 'sel169130325625103'
+            //             ].series[0].data = var1692357181000_82882
+            //         }
+            //         this.fromData['sel169130325625103'] = JSON.parse(
+            //             JSON.stringify(this.fromData['sel169130325625103'])
+            //         )
+            //     } else {
+            //         this.$message.error(res.msg)
+            //     }
+            // })
+            // this.$ajaxpost('/ui/common/testExecuteApi', {
+            //     sqlcontent:
+            //         'SELECT class_name, avg(sc.score) as sumscore, testtype FROM `test_class`\r\nas c inner join test_studnet as s on c.class_id = s.class_id\r\ninner join test_score as sc on sc.studnet_id = s.student_id GROUP BY class_name, testtype\r\nORDER BY testtype',
+            //     paramjsonsrt: {
+            //         body: {},
+            //         query: {},
+            //     },
+            //     apitype: 'LIST',
+            // }).then((res) => {
+            //     if (res.code === 0) {
+            //         this.fromData['sel169130312431258_dataconfig'] = res
+            //         this.sel169130312431258_bind_sys(
+            //             this.fromData['sel169130312431258'],
+            //             this.fromData['sel169130312431258_dataconfig']
+            //         )
+            //         this.fromData['sel169130312431258'] = JSON.parse(
+            //             JSON.stringify(this.fromData['sel169130312431258'])
+            //         )
+            //     } else {
+            //         this.$message.error(res.msg)
+            //     }
+            // })
+            // this.$ajaxpost('/ui/common/testExecuteApi', {
+            //     sqlcontent:
+            //         'SELECT class_name ,sum(sc.score) as sumscore FROM `test_class` as c inner join test_studnet as s on c.class_id=s.class_id\r\ninner join test_score as sc on sc.studnet_id=s.student_id GROUP BY class_name',
+            //     paramjsonsrt: {
+            //         body: {},
+            //         query: {},
+            //     },
+            //     apitype: 'LIST',
+            // }).then((res) => {
+            //     if (res.code === 0) {
+            //         this.fromData['sel169130302757431_dataconfig'] = res
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_89441 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.class_name)].class_name',
+            //             json: this.fromData['sel169130302757431_dataconfig'],
+            //         })
+            //         if (var1692357181000_89441.length > 0) {
+            //             this.fromData[
+            //                 'sel169130302757431'
+            //             ].yAxis[0].data = var1692357181000_89441
+            //         }
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_39384 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.sumscore)].sumscore',
+            //             json: this.fromData['sel169130302757431_dataconfig'],
+            //         })
+            //         if (var1692357181000_39384.length > 0) {
+            //             this.fromData[
+            //                 'sel169130302757431'
+            //             ].series[0].data = var1692357181000_39384
+            //         }
+            //       // eslint-disable-next-line no-undef
+            //         let var1692357181000_56999 = JSONPath.JSONPath({
+            //             path: '$.data[?(@.sumscore)].sumscore',
+            //             json: this.fromData['sel169130302757431_dataconfig'],
+            //         })
+            //         if (var1692357181000_56999.length > 0) {
+            //             this.fromData[
+            //                 'sel169130302757431'
+            //             ].yAxis[1].data = var1692357181000_56999
+            //         }
+            //         this.fromData['sel169130302757431'] = JSON.parse(
+            //             JSON.stringify(this.fromData['sel169130302757431'])
+            //         )
+            //     } else {
+            //         this.$message.error(res.msg)
+            //     }
+            // })
         },
     },
     created() {
