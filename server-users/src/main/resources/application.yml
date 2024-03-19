@@ -1,0 +1,87 @@
+# spring配置
+spring:
+  elasticsearch:
+    rest:
+      uris: http://192.168.161.128:9200
+  redis:
+    host: localhost
+    port: 6379
+    password:
+
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          url: jdbc:mysql://192.168.161.131:3307/mz-master?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
+        slave_1:
+          url: jdbc:mysql://192.168.161.131:3308/mz-master?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
+    #qq邮箱配置
+  profiles:
+    mail:
+      smtp:
+        ssl:
+          #当这个属性被设置为true时，表示启用SSL加密；当设置为false时，表示不启用SSL加密。
+          #在实际应用中，如果您的邮件服务器要求使用SSL加密来确保邮件传输的安全性，那么您可以将这个属性设置为true，以确保邮件发送的安全性。
+          enable: true
+  mail:
+    #配置smtp服务主机地址
+    host: smtp.qq.com
+    #简单邮件传输协议
+    protocol: smtp
+    port: 587
+    #默认的邮件编码为 utf-8
+    default-encoding: utf-8
+    password: viqnowitqgnxdafc #qq邮箱授权码
+    username: 3615954228@qq.com #邮箱名
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.mz.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mz:
+  minio:
+    endpoint: http://localhost:9000
+    bucket: mzimgs
+    #熔断器默认false不开启
+feign:
+  hystrix: #熔断器
+    enabled: true #开启熔断
+  #    请求压缩模式，在满足2M的情况下就开始压缩了
+  compression:
+    request:
+      enabled: true #是否对请求进行GZiP压缩
+      min-request-size: 2048 #压缩级别默认2M ,#超过该大小的请求会被压缩
+    response:
+      enabled: true
+      useGzipDecoder: true #是否对响应进行GZIP压缩
+server:
+  port: 8081
+xxl:
+  job:
+    # 访问令牌
+    accessToken: default_token
+    # 调度中心地址
+    admin:
+      # windows版的调度中心
+      addresses: http://127.0.0.1:7777/xxl-job-admin
+      # Linux版的调度中心
+      #addresses: http://192.168.200.128:8093/xxl-job-admin
+    executor:
+      # 执行器的名称
+      appname: handlerJob1
+      address:
+      ip: 127.0.0.1
+      port: 9666
+      logpath: D:/xxljoblog
+      # 日志保留天数
+      logretentiondays: 30
+
+

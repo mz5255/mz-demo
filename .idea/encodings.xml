@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/../../../../kaifaruanjian/dev/soft/repo/org/springframework/boot/spring-boot-starter-parent/2.2.5.RELEASE/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../kaifaruanjian/dev/soft/repo/org/springframework/boot/spring-boot-starter-parent/2.4.5/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-ssharding-jdbc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-users/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
